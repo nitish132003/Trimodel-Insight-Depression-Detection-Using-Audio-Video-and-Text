@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Stress Detection Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 32px;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .download-btn {
+            background-color: #4caf50;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video Stress Detection Results</h1>
+    <div class="results">
+        <p><strong>Average Stress Level:</strong> {{ avg_stress_level }}</p>
+        <p><strong>Dominant Emotion:</strong> {{ avg_emotion }}</p>
+        <p><strong>Average Frequency:</strong> {{ avg_frequency }}</p>
+        <a href="/download-video-excel" class="download-btn">Download Results Excel Sheet</a>
+    </div>
+</body>
+</html

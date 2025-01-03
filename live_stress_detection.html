@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Stress Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #ffffff;
+            text-align: center;
+            padding-top: 50px;
+        }
+        h1 {
+            font-size: 32px;
+            color: #ffd700;
+        }
+        .controls {
+            margin-top: 20px;
+        }
+        button {
+            background-color: #ff6347;
+            color: #ffffff;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #ff7f50;
+            transform: scale(1.05);
+        }
+        .download-btn {
+            background-color: #32cd32;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .download-btn:hover {
+            background-color: #3ae53a;
+            transform: scale(1.05);
+        }
+        .video-feed {
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #ffd700;
+            width: 600px;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <script>
+        function startSession() {
+            fetch('/start_live_session', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => console.log(data.status));
+        }
+        function endSession() {
+            fetch('/end_live_session', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => console.log(data.status));
+        }
+    </script>
+</head>
+<body>
+    <h1>Live Stress Detection</h1>
+    <div class="controls">
+        <button onclick="startSession()">Start Session</button>
+        <button onclick="endSession()">End Session</button>
+    </div>
+    <a href="/download_live_excel" class="download-btn">Download Session Results</a>
+    <div class="video-feed">
+        <img src="{{ url_for('video_feed') }}" alt="Live Camera Feed">
+    </div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Video for Stress Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #1d2671, #c33764);
+            color: #ffffff;
+            text-align: center;
+            padding-top: 50px;
+        }
+        h1 {
+            font-size: 32px;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        form {
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #ffd700;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            border-radius: 8px;
+            width: 300px;
+        }
+        input[type="file"] {
+            margin: 10px 0;
+            padding: 8px;
+            font-size: 16px;
+            color: #333;
+            width: 100%;
+        }
+        button {
+            background-color: #ff6347;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #ff7f50;
+            transform: scale(1.05);
+        }
+        .results {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            display: inline-block;
+        }
+        .results h2 {
+            color: #ffd700;
+        }
+        .results p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        .download-btn {
+            background-color: #32cd32;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .download-btn:hover {
+            background-color: #3ae53a;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload Video for Stress Detection</h1>
+    <form action="/upload-video" method="post" enctype="multipart/form-data">
+        <input type="file" name="video" accept="video/*" required>
+        <button type="submit">Upload</button>
+    </form>
+    {% if avg_stress_level is not none %}
+    <div class="results">
+        <h2>Session Results</h2>
+        <p><strong>Average Stress Level:</strong> {{ avg_stress_level }}</p>
+        <p><strong>Dominant Emotion:</strong> {{ avg_emotion }}</p>
+        {% if download_ready %}
+        <a href="/download_uploaded_excel" class="download-btn">Download Results Excel Sheet</a>
+        {% endif %}
+    </div>
+    {% endif %}
+</body>
+</html>
